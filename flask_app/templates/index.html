@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <title>Flask Twitter</title>
+  </head>
+  <body>
+      <div class="container">
+          <div class="row" style="justify-content: space-evenly;">
+            <h1 class="col-md-4">All Users</h1>
+            <h1 class="col-md-6">Create User</h1>
+          </div>
+          
+          <div class="row" style="justify-content: space-evenly;">
+        <table class="col-md-4">
+          <thead>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Handle</th>
+            <th>Actions</th>
+          </thead>
+          <tbody>
+            {% for user in users%}
+            <tr>
+              <td>{{user.first_name}}</td>
+              <td>{{user.last_name}}</td>
+              <td>{{user.handle}}</td>
+              <td><a href="/user/delete/{{user.iduser}}">Delete</a> | <a href="/user/edit/{{user.iduser}}">Edit</a></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        <form action="/user/create" method="POST" class="col-md-6">
+            
+            <div class="form-group">
+                <label for="first_name">First Name:</label>
+                <input type="text" class="form-control" name="first_name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name:</label>
+                <input type="text" class="form-control" name="last_name">
+            </div>
+            <div class="form-group">
+                <label for="handle">Handle:</label>
+                <input type="text" class="form-control" name="handle">
+            </div>
+            <div class="form-group">
+                <label for="first_name">Birthday:</label>
+                <input type="date" class="form-control" name="birthday">
+            </div>
+            <button class="btn btn-secondary">Create user</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
